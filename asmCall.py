@@ -66,7 +66,13 @@ def write(code_file_name, outfile_name):
                 buffer.append(i)
         line = "".join(buffer)
         buffer = list()
-        output = compile(line)
+        if "beq" in line or "bne" in line or "bltz" in line:
+            for key in table.keys():
+                if key in line:
+                    line = line.split()
+                    line[line.index(key)] = str(table[key])
+                    line = " ".join(line)
+        output = compile(line, table)
         outfile_str.write(output + '\n')
         outfile.write((int(output, base = 2).to_bytes(4, byteorder = 'big')))
     

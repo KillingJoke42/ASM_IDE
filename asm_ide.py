@@ -59,9 +59,9 @@ class theme_select(QComboBox):
 			window.change_size("Large")
 
 class text_area(QPlainTextEdit):
-	def __init__(self):
+	def __init__(self, read_only):
 		super().__init__()
-		self.setReadOnly(True)
+		self.setReadOnly(read_only)
 		self.tempFileName = ""
 
 	def commit(self, text, client):
@@ -135,16 +135,16 @@ theme_label = QLabel("Theme: ")
 choose_theme = theme_select("theme")
 size_label = QLabel("Window Size: ")
 choose_size = theme_select("size")
-reia_comms = text_area()
+reia_comms = text_area(True)
 cmd_text = text_box()
 cmd_submit = QPushButton("Submit")
 asm_label = QLabel("Final Assembly Code")
 asm_label.setStyleSheet("font-weight: bold;")
-asm = text_area()
+asm = text_area(False)
 save_asm = QPushButton("Commit .asm")
 hex_label = QLabel("Final Hex Code")
 hex_label.setStyleSheet("font-weight: bold;")
-hex_ = text_area()
+hex_ = text_area(True)
 save_hex = QPushButton("Save as .hex")
 
 
