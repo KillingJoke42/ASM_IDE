@@ -79,15 +79,28 @@ class text_box(QLineEdit):
 		self.history = list()
 		self.returnPressed.connect(submit_cmd)
 
+def check_for_label(command):
+	cmd_wrd = command.split()
+	if "define" in cmd_wrd or "def" in cmd_wrd:
+		label = cmd_wrd[1]
+		cmd_wrd = cmd_wrd[2:]
+		cmd = " ".join(cmd_wrd)
+		return label, cmd
+	else:
+		return None, command
+
 def submit_cmd():
-	command = cmd_text.text()
+	command_in = cmd_text.text()
+	label_def, command = check_for_label(command_in)
+	if label_def:
+		if '?' in label_def:
+			label_def = label_def[1:]
 	cl_pred = classify.classify(command)
 	asm_inst = interpreter.interpreter(command, cl_pred)
-	#bin_inst = asmtobin.
 	cmd_text.setText("")
-	reia_comms.commit(command, "user")
-	reia_comms.commit(asm_inst, "assistant")
-	asm.commit(asm_inst, "system")
+	reia_comms.commit(command_in, "user")
+	reia_comms.commit(asm_inst if not label_def else (label_def + ": " + asm_inst), "assistant")
+	asm.commit(asm_inst if not label_def else (label_def + ": " + asm_inst), "system")
 
 app = app_home([])
 window = main_window()
