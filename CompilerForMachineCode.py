@@ -1,4 +1,4 @@
-def compile(instruction):
+def compile(instruction, symbol_table):
     commands = dict({
                     'mfhi':['r',0,16],
                     'mflo':['r',0,18],
@@ -399,7 +399,11 @@ def compile(instruction):
         machine = [opcode, rs, rt, imm]
     elif inst_type == 'j':
         opcode = "{0:06b}".format(opcode)
-        jumpaddr = "{0:026b}".format(0)
+        try:
+            jumpaddr = symbol_table[jumpaddr]
+        except KeyError:
+            print("Label Not Found")
+        jumpaddr = "{0:026b}".format(jumpaddr)
         machine = [opcode, jumpaddr]
 
     machine = "".join(machine)
