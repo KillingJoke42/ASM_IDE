@@ -1,0 +1,494 @@
+add and
+add
+double
+add in
+copy to
+update by
+increment by
+upgrade using
+using update
+perform addition of and
+plus
+add and and store it in
+add and and update
+update using and
+update the value of by
+upgrade value of by
+add register and and store the result in register
+add and place it in
+add and place the result in
+add and put the result in
+add and store it in
+add and store the result in
+double and place it in
+double and place the result in
+double and put the result in
+double and store it in
+double and store the result in
+add in and place it in
+add in and place the result in
+add in and put the result in
+add in and store it in
+add in and store the result in
+copy to and place it in
+copy to and place the result in
+copy to and put the result in
+copy to and store it in
+copy to and store the result in
+update by and place it in
+update by and place the result in
+update by and put the result in
+update by and store it in
+update by and store the result in
+increment by and place it in
+increment by and place the result in
+increment by and put the result in
+increment by and store it in
+increment by and store the result in
+upgrade using and place it in
+upgrade using and place the result in
+upgrade using and put the result in
+upgrade using and store it in
+upgrade using and store the result in
+using update and place it in
+using update and place the result in
+using update and put the result in
+using update and store it in
+using update and store the result in
+perform addition of and and place it in
+perform addition of and and place the result in
+perform addition of and and put the result in
+perform addition of and and store it in
+perform addition of and and store the result in
+plus and place it in
+plus and place the result in
+plus and put the result in
+plus and store it in
+plus and store the result in
+add and and place it in
+add and and place the result in
+add and and put the result in
+add and and store it in
+add and and store the result in
+add unsigned
+double unsigned
+add in unsigned
+copy to unsigned
+update by unsigned
+increment by unsigned
+upgrade using unsigned
+using update unsigned
+perform addition of and unsigned
+plus unsigned
+add and unsigned
+add and place it in unsigned
+add and place the result in unsigned
+add and put the result in unsigned
+add and store it in unsigned
+add and store the result in unsigned
+double and place it in unsigned
+double and place the result in unsigned
+double and put the result in unsigned
+double and store it in unsigned
+double and store the result in unsigned
+add in and place it in unsigned
+add in and place the result in unsigned
+add in and put the result in unsigned
+add in and store it in unsigned
+add in and store the result in unsigned
+copy to and place it in unsigned
+copy to and place the result in unsigned
+copy to and put the result in unsigned
+copy to and store it in unsigned
+copy to and store the result in unsigned
+update by and place it in unsigned
+update by and place the result in unsigned
+update by and put the result in unsigned
+update by and store it in unsigned
+update by and store the result in unsigned
+increment by and place it in unsigned
+increment by and place the result in unsigned
+increment by and put the result in unsigned
+increment by and store it in unsigned
+increment by and store the result in unsigned
+upgrade using and place it in unsigned
+upgrade using and place the result in unsigned
+upgrade using and put the result in unsigned
+upgrade using and store it in unsigned
+upgrade using and store the result in unsigned
+using update and place it in unsigned
+using update and place the result in unsigned
+using update and put the result in unsigned
+using update and store it in unsigned
+using update and store the result in unsigned
+perform addition of and and place it in unsigned
+perform addition of and and place the result in unsigned
+perform addition of and and put the result in unsigned
+perform addition of and and store it in unsigned
+perform addition of and and store the result in unsigned
+plus and place it in unsigned
+plus and place the result in unsigned
+plus and put the result in unsigned
+plus and store it in unsigned
+plus and store the result in unsigned
+add and and place it in unsigned
+add and and place the result in unsigned
+add and and put the result in unsigned
+add and and store it in unsigned
+add and and store the result in unsigned
+subtract
+half
+subtract in
+remove from
+decrement by
+downgrade using
+perform subtraction of and
+minus
+subtract and
+subtract and place it in unsigned
+subtract and place the result in unsigned
+subtract and put the result in unsigned
+subtract and store it in unsigned
+subtract and store the result in unsigned
+half and place it in unsigned
+half and place the result in unsigned
+half and put the result in unsigned
+half and store it in unsigned
+half and store the result in unsigned
+subtract in and place it in unsigned
+subtract in and place the result in unsigned
+subtract in and put the result in unsigned
+subtract in and store it in unsigned
+subtract in and store the result in unsigned
+remove from and place it in unsigned
+remove from and place the result in unsigned
+remove from and put the result in unsigned
+remove from and store it in unsigned
+remove from and store the result in unsigned
+decrement by and place it in unsigned
+decrement by and place the result in unsigned
+decrement by and put the result in unsigned
+decrement by and store it in unsigned
+decrement by and store the result in unsigned
+downgrade using and place it in unsigned
+downgrade using and place the result in unsigned
+downgrade using and put the result in unsigned
+downgrade using and store it in unsigned
+downgrade using and store the result in unsigned
+perform subtraction of and and place it in unsigned
+perform subtraction of and and place the result in unsigned
+perform subtraction of and and put the result in unsigned
+perform subtraction of and and store it in unsigned
+perform subtraction of and and store the result in unsigned
+minus and place it in unsigned
+minus and place the result in unsigned
+minus and put the result in unsigned
+minus and store it in unsigned
+minus and store the result in unsigned
+subtract and and place it in unsigned
+subtract and and place the result in unsigned
+subtract and and put the result in unsigned
+subtract and and store it in unsigned
+subtract and and store the result in unsigned
+subtract and place it in
+subtract and place the result in
+subtract and put the result in
+subtract and store it in
+subtract and store the result in
+half and place it in
+half and place the result in
+half and put the result in
+half and store it in
+half and store the result in
+subtract in and place it in
+subtract in and place the result in
+subtract in and put the result in
+subtract in and store it in
+subtract in and store the result in
+remove from and place it in
+remove from and place the result in
+remove from and put the result in
+remove from and store it in
+remove from and store the result in
+decrement by and place it in
+decrement by and place the result in
+decrement by and put the result in
+decrement by and store it in
+decrement by and store the result in
+downgrade using and place it in
+downgrade using and place the result in
+downgrade using and put the result in
+downgrade using and store it in
+downgrade using and store the result in
+perform subtraction of and and place it in
+perform subtraction of and and place the result in
+perform subtraction of and and put the result in
+perform subtraction of and and store it in
+perform subtraction of and and store the result in
+minus and place it in
+minus and place the result in
+minus and put the result in
+minus and store it in
+minus and store the result in
+subtract and and place it in
+subtract and and place the result in
+subtract and and put the result in
+subtract and and store it in
+subtract and and store the result in
+check if is less than
+comapre if less than
+compare with
+set if less than
+check if less than and set if True
+compare with and set if less
+multiply and
+square
+divide and
+multiply and unsigned
+divide and unsigned
+give result of and by and gate
+using and gate give result of and
+and operation of with
+perform and operation of with
+bitwise and of and
+give result of and by and gate and place it in
+give result of and by and gate and place the result in
+give result of and by and gate and put the result in
+give result of and by and gate and store it in
+give result of and by and gate and store the result in
+using and gate give result of and and place it in
+using and gate give result of and and place the result in
+using and gate give result of and and put the result in
+using and gate give result of and and store it in
+using and gate give result of and and store the result in
+and operation of with and place it in
+and operation of with and place the result in
+and operation of with and put the result in
+and operation of with and store it in
+and operation of with and store the result in
+perform and operation of with and place it in
+perform and operation of with and place the result in
+perform and operation of with and put the result in
+perform and operation of with and store it in
+perform and operation of with and store the result in
+bitwise and of and and place it in
+bitwise and of and and place the result in
+bitwise and of and and put the result in
+bitwise and of and and store it in
+bitwise and of and and store the result in
+give result of and by or gate and place it in
+give result of and by or gate and place the result in
+give result of and by or gate and put the result in
+give result of and by or gate and store it in
+give result of and by or gate and store the result in
+using or gate give result of and and place it in
+using or gate give result of and and place the result in
+using or gate give result of and and put the result in
+using or gate give result of and and store it in
+using or gate give result of and and store the result in
+or operation of with and place it in
+or operation of with and place the result in
+or operation of with and put the result in
+or operation of with and store it in
+or operation of with and store the result in
+perform or operation of with and place it in
+perform or operation of with and place the result in
+perform or operation of with and put the result in
+perform or operation of with and store it in
+perform or operation of with and store the result in
+bitwise or of and and place it in
+bitwise or of and and place the result in
+bitwise or of and and put the result in
+bitwise or of and and store it in
+bitwise or of and and store the result in
+give result of and by xor gate and place it in
+give result of and by xor gate and place the result in
+give result of and by xor gate and put the result in
+give result of and by xor gate and store it in
+give result of and by xor gate and store the result in
+using xor gate give result of and and place it in
+using xor gate give result of and and place the result in
+using xor gate give result of and and put the result in
+using xor gate give result of and and store it in
+using xor gate give result of and and store the result in
+xor operation of with and place it in
+xor operation of with and place the result in
+xor operation of with and put the result in
+xor operation of with and store it in
+xor operation of with and store the result in
+perform xor operation of with and place it in
+perform xor operation of with and place the result in
+perform xor operation of with and put the result in
+perform xor operation of with and store it in
+perform xor operation of with and store the result in
+bitwise xor of and and place it in
+bitwise xor of and and place the result in
+bitwise xor of and and put the result in
+bitwise xor of and and store it in
+bitwise xor of and and store the result in
+give result of and by nor gate and place it in
+give result of and by nor gate and place the result in
+give result of and by nor gate and put the result in
+give result of and by nor gate and store it in
+give result of and by nor gate and store the result in
+using nor gate give result of and and place it in
+using nor gate give result of and and place the result in
+using nor gate give result of and and put the result in
+using nor gate give result of and and store it in
+using nor gate give result of and and store the result in
+nor operation of with and place it in
+nor operation of with and place the result in
+nor operation of with and put the result in
+nor operation of with and store it in
+nor operation of with and store the result in
+perform nor operation of with and place it in
+perform nor operation of with and place the result in
+perform nor operation of with and put the result in
+perform nor operation of with and store it in
+perform nor operation of with and store the result in
+bitwise nor of and and place it in
+bitwise nor of and and place the result in
+bitwise nor of and and put the result in
+bitwise nor of and and store it in
+bitwise nor of and and store the result in
+move from hi to
+copy from hi to
+place value of hi in
+copy from hi to
+place upper bytes of result of multiplication in
+place remainder of result of division in
+move from lo to
+copy from lo to
+place value of lo in
+copy from lo to
+place lower bytes of result of multiplication in
+place dividend of result of division in
+load upper bytes of with
+place in upper bytes of with
+initialize upper bytes of with
+push into the upper bytes of
+shift by to the left logically and place it in
+shift by to the right logically and place it in
+shift by to the right arithmetically and place it in
+shift by to the left logically and place the result in
+shift by to the right logically and place the result in
+shift by to the right arithmetically and place the result in
+shift by to the left logically and put the result in
+shift by to the right logically and put the result in
+shift by to the right arithmetically and put the result in
+shift by to the left logically and store it in
+shift by to the right logically and store it in
+shift by to the right arithmetically and store it in
+shift by to the left logically and store the result in
+shift by to the right logically and store the result in
+shift by to the right arithmetically and store the result in
+shift by to the left logically
+shift by to the right logically
+shift by to the right arithmetically
+load word from memory location to
+load word from to
+load word from and copy value to
+load word into from
+access word in and place it in
+load byte from memory location to
+load byte from to
+load byte from and copy value to
+load byte into from
+access byte in and place it in
+load byte from memory location to unsigned
+load byte from to unsigned
+load byte from and copy value to unsigned
+load byte into from unsigned
+access byte in and place it in unsigned
+store word into memory location from
+store word to from
+store word from to
+store word into from
+store byte into memory location from
+store byte to from
+store byte from to
+store byte into from
+save word into memory location from
+save word to from
+save word from to
+save word into from
+save byte into memory location from
+save byte to from
+save byte from to
+save byte into from
+load word from memory location to with offset
+load word from to with offset
+load word from and copy value to with offset
+load word into from with offset
+access word in and place it in with offset
+load byte from memory location to with offset
+load byte from to with offset
+load byte from and copy value to with offset
+load byte into from with offset
+access byte in and place it in with offset
+load byte from memory location to unsigned with offset
+load byte from to unsigned,load byte from and copy value to unsigned with offset
+load byte into from unsigned with offset
+access byte in and place it in unsigned with offset
+store word into memory location from with offset
+store word to from with offset
+store word from to with offset
+store word into from with offset
+store byte into memory location from with offset
+store byte to from with offset
+store byte from to with offset
+store byte into from with offset
+save word into memory location from with offset
+save word to from with offset
+save word from to with offset
+save word into from with offset
+save byte into memory location from with offset
+save byte to from with offset
+save byte from to with offset
+save byte into from with offset
+jump to if equals to
+jump to if is equal to
+jump to if and are equal
+jump to if is same as
+if equals to jump to
+if and are equal jump to
+if is equal to jump to
+if and are equal then jump to
+if is the same as jump to
+if equals to then jump to
+if is equal to then jump to
+if is the same as then jump to
+jump to if and are same
+jump to if and are the same	
+jump to if is less than zero
+jump to if is not greater than or equal to zero
+if is less than zero then jump to
+if is not greater than or equal to zero then jump to
+if is not greater than or equal to zero jump to
+if is less than zero jump to
+jump to if is not equal to
+jump to if and are not equal
+if and are not equal then jump to
+if and are not equal jump to
+if is not equal to then jump to
+if is not equal to jump to
+jump to if and are not same
+if and are not same then jump to
+if and are not same jump to
+jump to if is not the same as
+if is not the same as then jump to
+if is not the same as jump to
+go to
+jump to 
+switch to
+move to
+begin procedure
+start procedure
+call procedure
+call
+return from procedure and go to
+return from procedure and go to
+return to
+return from procedure
+return to main
+end procedure
