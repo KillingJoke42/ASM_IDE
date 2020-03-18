@@ -21,7 +21,7 @@ def main():
 	else:
 		command = argv[1]
 		cl_pred = argv[2]
-	print(interpreter(command, cl_pred))
+	#print(interpreter(command, cl_pred))
 
 def get_reg_data(reg_used):
       flag = True if len(reg_used) == 3 else False
@@ -208,7 +208,7 @@ def interpreter(command, cl_pred):
             if "divide" in cmd_wrd:
                   final_inst = "div{} {}, {}".format('u' if "unsigned" in cmd_wrd else '', rs, rt)
 
-      print([cmd_wrd, final_inst, reg_used])
+      #print([cmd_wrd, final_inst, reg_used])
       return final_inst
 
 #if __name__ == '__main__':
