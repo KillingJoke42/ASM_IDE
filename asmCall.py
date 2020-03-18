@@ -41,11 +41,11 @@ def symbol_table(instruction, program_counter):
         table[label] = program_counter
     return program_counter
 
-def main():
+def write(code_file_name, outfile_name):
 
-    codefile = open(sys.argv[1], 'r')
-    outfile = open('code.hex', 'wb')
-    outfile_str = open('code_str.hex', 'w')
+    codefile = open(code_file_name, 'r')
+    outfile = open(outfile_name, 'wb')
+    outfile_str = open(outfile_name[:-4] + '_str.hex', 'w')
 
     buffer = list()
     pc = 0
@@ -55,26 +55,21 @@ def main():
                 buffer.append(i)
         line = "".join(buffer)
         buffer = list()
-        print(line)
         pc = symbol_table(line, pc)
 
-    print(table)
+    codefile.close()
+    codefile = open(code_file_name, 'r')
+
     for line in codefile:
         for i in line:
             if i != '\n':
                 buffer.append(i)
         line = "".join(buffer)
         buffer = list()
-        print(line)
         output = compile(line)
         outfile_str.write(output + '\n')
-        #for i in output:
-            #outfile.write(chr(ord(i) - 48))
-        #outfile.write('\n')
         outfile.write((int(output, base = 2).to_bytes(4, byteorder = 'big')))
-        #outfile.write('\n')
     
+    outfile_str.close()
     outfile.close()
     codefile.close()
-if __name__ == "__main__":
-    main()

@@ -1,10 +1,10 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QComboBox, QPlainTextEdit, QLineEdit
-from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QPushButton, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QPushButton, QLabel, QVBoxLayout, QFileDialog
 from PyQt5.QtCore import Qt
 from styles import dark_fusion, default
 import classify
 import interpreter1 as interpreter
-#import CompilerForMachineCode as asmtobin
+import asmCall
 
 class app_home(QApplication):
 	def __init__(self, arg):
@@ -62,6 +62,7 @@ class text_area(QPlainTextEdit):
 	def __init__(self):
 		super().__init__()
 		self.setReadOnly(True)
+		self.tempFileName = ""
 
 	def commit(self, text, client):
 		if client == "user":
@@ -72,6 +73,26 @@ class text_area(QPlainTextEdit):
 			self.appendPlainText(text)
 		else:
 			self.appendPlainText("Unauthorized Usage Detected")
+
+	def saveASM(self):
+		options = QFileDialog.Options()
+		options |= QFileDialog.DontUseNativeDialog
+		fileName, _ = QFileDialog.getSaveFileName(self,"Save Code","","All Files (*);;ASM Files (*.asm)", options=options)
+		if fileName:
+			file = open(fileName, 'w')
+			data = self.toPlainText()
+			file.write(data)
+			file.close()
+			hex_.tempFileName = fileName
+
+	def saveHEX(self):
+		options = QFileDialog.Options()
+		options |= QFileDialog.DontUseNativeDialog
+		hexfile, _ = QFileDialog.getSaveFileName(self,"Save HEX file","","All Files (*);;HEX Files (*.hex)", options=options)
+		if hexfile:
+			asmCall.write(self.tempFileName, hexfile)
+			file = open(hexfile[:-4] + '_str.hex', 'r')
+			self.setPlainText(file.read())
 
 class text_box(QLineEdit):
 	def __init__(self):
@@ -120,7 +141,7 @@ cmd_submit = QPushButton("Submit")
 asm_label = QLabel("Final Assembly Code")
 asm_label.setStyleSheet("font-weight: bold;")
 asm = text_area()
-save_asm = QPushButton("Save as .asm")
+save_asm = QPushButton("Commit .asm")
 hex_label = QLabel("Final Hex Code")
 hex_label.setStyleSheet("font-weight: bold;")
 hex_ = text_area()
@@ -148,6 +169,8 @@ main_layout.addLayout(datagen_layout, 0, 1, 0, 1)
 main_layout.addLayout(cmd_input_layout, 3, 0)
 
 cmd_submit.clicked.connect(submit_cmd)
+save_asm.clicked.connect(asm.saveASM)
+save_hex.clicked.connect(hex_.saveHEX)
 
 window.setLayout(main_layout)
 window.show()

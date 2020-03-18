@@ -85,7 +85,6 @@ def compile(instruction):
 
     #instruction = input('Enter the Command : ')
     instruction = instruction.split()
-    print(instruction)
     buffer = list()
 
     flag = 0
@@ -314,7 +313,7 @@ def compile(instruction):
                                 rs.append(j)
                             elif flag2 == 1:
                                 rt.append(j)
-            print([rs,rt,imm])
+
         elif inst_ext_op in itype_class3:
             flag1 = 0
             flag2 = 0
