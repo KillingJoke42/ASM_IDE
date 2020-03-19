@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QComboBox, QPlainTextEdit, QLineEdit
 from PyQt5.QtWidgets import QGridLayout, QHBoxLayout, QPushButton, QLabel, QVBoxLayout, QFileDialog
 from PyQt5.QtCore import Qt
+from PyQt5 import QtGui
 from styles import dark_fusion, default
 import classify
 import interpreter1 as interpreter
@@ -101,8 +102,24 @@ class text_area(QPlainTextEdit):
 class text_box(QLineEdit):
 	def __init__(self):
 		super().__init__()
-		self.history = list()
+		self.history = list([''])
+		self.topIndex = 0
+		self.tracker = self.topIndex
 		self.returnPressed.connect(submit_cmd)
+
+	def keyPressEvent(self, event):
+		try:
+			if event.key() == Qt.Key_Up:
+				self.tracker -= 1 if self.tracker > 0 else 0
+				self.setText(self.history[self.tracker])
+			elif event.key() == Qt.Key_Down:
+				self.tracker += 1 if self.tracker <= self.topIndex else 0
+				self.setText(self.history[self.tracker])
+			else:
+				self.tracker = self.topIndex
+				super(text_box, self).keyPressEvent(event)
+		except IndexError:
+			pass
 
 def check_for_label(command):
 	cmd_wrd = command.split()
@@ -116,6 +133,11 @@ def check_for_label(command):
 
 def submit_cmd():
 	command_in = cmd_text.text()
+	cmd_text.history.pop()
+	cmd_text.history.append(command_in)
+	cmd_text.history.append('')
+	cmd_text.topIndex += 1
+	cmd_text.tracker = cmd_text.topIndex
 	label_def, command = check_for_label(command_in)
 	if label_def:
 		if '?' in label_def:
