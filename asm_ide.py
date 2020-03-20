@@ -6,6 +6,7 @@ from styles import dark_fusion, default
 import classify
 import interpreter1 as interpreter
 import asmCall
+from Speech_recog import Speech
 
 # define defult main window
 class app_home(QApplication):
@@ -149,6 +150,15 @@ def submit_cmd():
 	reia_comms.commit(asm_inst if not label_def else (label_def + ": " + asm_inst), "assistant")
 	asm.commit(asm_inst if not label_def else (label_def + ": " + asm_inst), "system")
 
+def get_cmd():
+	reia_comms.commit("Speech Activated. Say Something......", "assistant")
+	try:
+		speech_in = Speech().lower()
+	except:
+		reia_comms.commit("Speech Failed. Please Try Again", "assistant")
+	reia_comms.commit("Speech Done", "assistant")
+	cmd_text.setText(speech_in)
+
 app = app_home([])
 window = main_window()
 
@@ -164,6 +174,7 @@ choose_size = theme_select("size")
 reia_comms = text_area(True)
 cmd_text = text_box()
 cmd_submit = QPushButton("Submit")
+cmd_speech = QPushButton("Say")
 asm_label = QLabel("Final Assembly Code")
 asm_label.setStyleSheet("font-weight: bold;")
 asm = text_area(False)
@@ -188,6 +199,7 @@ datagen_layout.addWidget(hex_, 3, 0, 1, 0)
 
 cmd_input_layout.addWidget(cmd_text)
 cmd_input_layout.addWidget(cmd_submit)
+cmd_input_layout.addWidget(cmd_speech)
 
 main_layout.addLayout(theme_layout, 0, 0)
 main_layout.addWidget(reia_comms, 1, 0)
@@ -195,6 +207,7 @@ main_layout.addLayout(datagen_layout, 0, 1, 0, 1)
 main_layout.addLayout(cmd_input_layout, 3, 0)
 
 cmd_submit.clicked.connect(submit_cmd)
+cmd_speech.clicked.connect(get_cmd)
 save_asm.clicked.connect(asm.saveASM)
 save_hex.clicked.connect(hex_.saveHEX)
 
