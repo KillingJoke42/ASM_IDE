@@ -21,6 +21,7 @@ def main():
 	else:
 		command = argv[1]
 		cl_pred = argv[2]
+	#print(interpreter(command, cl_pred))
 
 def get_reg_data(reg_used):
       flag = True if len(reg_used) == 3 else False
@@ -88,6 +89,29 @@ def fetch_reg(cmd_wrd):
 def interpreter(command, cl_pred):
       cmd_wrd = command.split()
       reg_used = []
+      #print(cmd_wrd)
+      """
+      for i in cmd_wrd:
+            if i in registers or ('$'+i) in registers:
+                  if inst_type == 'j' and len(reg_used) == 0:
+                        inst_type = 'r'
+                  elif inst_type == 'j' and len(reg_used) == 1:
+                        inst_type = 'i'
+                  reg_used.append(i if '$' in i else ('$'+i))
+            elif i[0] == '?':
+                  reg_used.append(i[1:])
+                  if inst_type == 'r':
+                        inst_type = 'i'
+            else:
+                  try:
+                        imm = int(i)
+                        reg_used.append(imm)
+                        inst_type = 'i'
+                  except ValueError:
+                        continue
+      if len(reg_used) == 0:
+            inst_type = 'r'
+      """
       reg_used, inst_type = fetch_reg(cmd_wrd)
       final_inst = ""
       if cl_pred == "copy":
@@ -183,4 +207,9 @@ def interpreter(command, cl_pred):
                   final_inst = "mult{} {}, {}".format('u' if "unsigned" in cmd_wrd else '', rs, rt)
             if "divide" in cmd_wrd:
                   final_inst = "div{} {}, {}".format('u' if "unsigned" in cmd_wrd else '', rs, rt)
+
+      #print([cmd_wrd, final_inst, reg_used])
       return final_inst
+
+#if __name__ == '__main__':
+#      main()

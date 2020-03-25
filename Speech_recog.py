@@ -3,8 +3,7 @@ r=sr.Recognizer()
 def Speech():
     with sr.Microphone() as source:
         # read the audio data from the default microphone
-        audio_data = r.record(source, duration=5)
-        print("Recognizing...")
+        audio_data = r.record(source, duration=10)
         # convert speech to text
         text = r.recognize_google(audio_data)
         return(text)
