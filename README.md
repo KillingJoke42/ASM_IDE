@@ -26,7 +26,7 @@ pyqt5
 pyaudio >= 0.2.11
 SpeechRecognition >= 3.8.1
 
-<! ### Installing
+<!-- ### Installing
 
 To
 ```
@@ -84,5 +84,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
-```>
+``` 
+-->
 
