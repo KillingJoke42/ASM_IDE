@@ -17,7 +17,7 @@ for register in registers:
 
 special = dict({'hi':None, 'lo':None})
 
-pc = 0
+pc = None
 
 class SyntaxHighlighter(QtGui.QSyntaxHighlighter):
     def __init__(self, parent):
@@ -124,6 +124,9 @@ class text_area(QPlainTextEdit):
 		self.highlighter.clear_highlight()
 		self.highlighter.highlight_line(pc)
 
+	def remove_line(self):
+		self.setPlainText("\n".join(self.toPlainText().split('\n')[:-1]))
+
 	def saveASM(self):
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
@@ -219,21 +222,36 @@ def check_for_label(command):
 		return None, command
 
 def submit_cmd():
-	command_in = cmd_text.text()
-	cmd_text.history.pop()
-	cmd_text.history.append(command_in)
-	cmd_text.history.append('')
-	cmd_text.topIndex += 1
-	cmd_text.tracker = cmd_text.topIndex
-	label_def, command = check_for_label(command_in)
-	if label_def:
-		if '?' in label_def:
-			label_def = label_def[1:]
-	cl_pred = classify.classify(command)
-	asm_inst = interpreter.interpreter(command, cl_pred)
-	cmd_text.setText("")
-	reia_comms.commit(command_in, "user")
+	try:
+		command_in = cmd_text.text()
+		for keyword in ["erase", "remove", "incorrect", "misinterpreted", "not correct"]:
+			if keyword in command_in:
+				reia_comms.commit("Understood. Removing previous prediction.......\n", "assistant")
+				asm.remove_line()
+				cmd_text.setText("")
+				return
+		cmd_text.history.pop()
+		cmd_text.history.append(command_in)
+		cmd_text.history.append('')
+		cmd_text.topIndex += 1
+		cmd_text.tracker = cmd_text.topIndex
+		reia_comms.commit(command_in, "user")
+		label_def, command = check_for_label(command_in)
+		if label_def:
+			if '?' in label_def:
+				label_def = label_def[1:]
+		cl_pred = classify.classify(command)
+		asm_inst = interpreter.interpreter(command, cl_pred)
+		cmd_text.setText("")
+	except IndexError:
+		reia_comms.commit("An Error Occured. Have you accidently entered an incorrect instruction? Perhaps submitted a blank query?", "assistant")
+		reia_comms.commit("It can also be caused by an irregular number of registers for said instruction\n", "assistant")
+		return
+	except Exception as err:
+		reia_comms.commit("Something went wrong. Can you please try again? Error: " + str(err) + '\n', "assistant")
+		return
 	reia_comms.commit(asm_inst if not label_def else (label_def + ": " + asm_inst), "assistant")
+	reia_comms.commit('', "system")
 	asm.commit(asm_inst if not label_def else (label_def + ": " + asm_inst), "system")
 
 def get_cmd():
@@ -243,52 +261,84 @@ def get_cmd():
 		reia_comms.commit("Speech Done", "assistant")
 	except:
 		reia_comms.commit("Speech Failed. Please Try Again", "assistant")
+		return
 	cmd_text.setText(speech_in)
 
 def start_simulator():
 	global pc
+	if code_area.toPlainText() == '':
+		sim_comms.commit("Error: ASM file not loaded", "assistant")
+		sim_comms.commit("Hey! You forgot to load the code file! Use the load button to do so!\n", "assistant")
+		return
+	elif hex_area.toPlainText() == '':
+		sim_comms.commit("Error: HEX file not loaded", "assistant")
+		sim_comms.commit("Hey! You forgot to load the hex file! Use the load button to do so!\n", "assistant")
+		return
 	pc = 0
 	pc = simulate(pc)
 
 def next_inst():
 	global pc
+	if pc == None:
+		sim_comms.commit("Error: You must \"Start\" the simulation before step into the next instruction\n", "assistant")
+		return
 	pc = simulate(pc)
+
+def reset_simulator():
+	global pc
+	pc = None
+	code_area.highlighter.clear_highlight()
+	code_area.setPlainText('')
+	hex_area.setPlainText('')
+	code_area.instr = list()
+	hex_area.instr = list()
+	sim_comms.commit("Understood. Exiting Simulator.........\n", "assistant")
 
 def simulate(pc):
 	instruction = hex_area.instr[pc]
-	metrics = simulator.simulate(instruction)
+	try:
+		metrics = simulator.simulate(instruction)
+	except Exception as err:
+		sim_comms.commit("Instruction Simulation Failed. Error: " + str(err))
+		sim_comms.commit("Sorry, I failed to make a decision about what to do here. Can you check for buggy assembly code?\n", "assistant")
+		return
 	print(metrics)
-	if len(metrics) == 5:
-		inst, rs, rt, rd, sh = metrics
-		rs_val = register_file[registers[rs]] if register_file[registers[rs]] != None else 0
-		rt_val = register_file[registers[rt]] if register_file[registers[rt]] != None else 0
-		rd_val = register_file[registers[rd]] if register_file[registers[rd]] != None else 0
-		if inst in ["mfhi", "mflo"]:
-			register_file[registers[rd]] = getattr(simulator, inst)(rs_val, rt_val, rd_val, sh, special["hi" if inst == "mfhi" else "lo"])
-			pc += 1
-		elif inst in ["mult", "multu", "div", "divu"]:
-			#register_file[registers[rs]] = getattr(simulator, inst)(rs_val, rt_val, rd_val, sh)
-			special["hi"], special["lo"] = getattr(simulator, inst)(rs_val, rt_val, rd_val, sh)
-			pc += 1
+	try:
+		if len(metrics) == 5:
+			inst, rs, rt, rd, sh = metrics
+			rs_val = register_file[registers[rs]] if register_file[registers[rs]] != None else 0
+			rt_val = register_file[registers[rt]] if register_file[registers[rt]] != None else 0
+			rd_val = register_file[registers[rd]] if register_file[registers[rd]] != None else 0
+			if inst in ["mfhi", "mflo"]:
+				register_file[registers[rd]] = getattr(simulator, inst)(rs_val, rt_val, rd_val, sh, special["hi" if inst == "mfhi" else "lo"])
+				pc += 1
+			elif inst in ["mult", "multu", "div", "divu"]:
+				#register_file[registers[rs]] = getattr(simulator, inst)(rs_val, rt_val, rd_val, sh)
+				special["hi"], special["lo"] = getattr(simulator, inst)(rs_val, rt_val, rd_val, sh)
+				pc += 1
+			else:
+				register_file[registers[rd]] = getattr(simulator, inst if inst not in ["and","or"] else inst+'_')(rs_val, rt_val, rd_val, sh)
+				pc += 1
+		elif len(metrics) == 4:
+			inst, rs, rt, imm = metrics
+			rs_val = register_file[registers[rs]]
+			rt_val = register_file[registers[rt]]
+			if inst in ["bltz", "beq", "bne"]:
+				pc = getattr(simulator, inst)(rs_val, rt_val, imm, True, pc)
+			else:
+				register_file[registers[rt]] = getattr(simulator, inst)(rs_val, rt_val, imm, False, pc)
+				pc += 1
 		else:
-			register_file[registers[rd]] = getattr(simulator, inst if inst not in ["and","or"] else inst+'_')(rs_val, rt_val, rd_val, sh)
-			pc += 1
-	elif len(metrics) == 4:
-		inst, rs, rt, imm = metrics
-		rs_val = register_file[registers[rs]]
-		rt_val = register_file[registers[rt]]
-		if inst in ["bltz", "beq", "bne"]:
-			pc = getattr(simulator, inst)(rs_val, rt_val, imm, True, pc)
-		else:
-			register_file[registers[rt]] = getattr(simulator, inst)(rs_val, rt_val, imm, False, pc)
-			pc += 1
-	else:
-		inst, jumpaddr = metrics
-		pc = getattr(simulator, inst)(jumpaddr, pc)
+			inst, jumpaddr = metrics
+			pc = getattr(simulator, inst)(jumpaddr, pc)
+	except Exception as err:
+		sim_comms.commit("Register Fetch Failed. Error: " + str(err))
+		sim_comms.commit("Sorry, I failed to make a decision about what to do here. Can you check for buggy assembly code?\n", "assistant")
+		return
 
 	register_file_table.update()
 	code_area.instr_indicator(pc)
-	hex_area.instr_indicator(pc)
+	sim_comms.commit("Instruction Executed Successfully, updating pc.....\n", "assistant")
 	return pc
 
 def sim_exe():
@@ -373,7 +423,7 @@ hex_area = text_area(True)
 register_file_table = RegisterFile()
 start = QPushButton("Start")
 step = QPushButton("Next")
-reset = QPushButton("Reset")
+reset = QPushButton("Reset/Exit")
 
 load_layout.addWidget(add_asm_label)
 load_layout.addWidget(add_asm)
@@ -403,6 +453,7 @@ add_asm.clicked.connect(code_area.get_asm_file)
 add_hex.clicked.connect(hex_area.get_hex_file)
 start.clicked.connect(start_simulator)
 step.clicked.connect(next_inst)
+reset.clicked.connect(reset_simulator)
 
 simulator_window.setLayout(simulate_layout)
 

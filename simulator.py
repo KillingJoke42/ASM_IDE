@@ -2,6 +2,12 @@ import asmCall
 from sys import argv
 from CompilerForMachineCode import commands
 
+def convert_to_unsigned(num):
+	if num < 0:
+		return (pow(2, 32) - num)
+	else:
+		return num
+
 def mfhi(rs, rt, rd, sh, hi):
 	if hi != None:
 		return hi
@@ -24,11 +30,20 @@ def lui(rs, rt, imm, jump_enabled, pc):
 		return False
 
 def add(rs, rt, rd, sh):
-	print(rs, rt, rs + rt)
 	return (rs + rt)
+
+def addu(rs, rt, rd, sh):
+	rs = convert_to_unsigned(rs)
+	rt = convert_to_unsigned(rt)
+	return rs + rt
 
 def sub(rs, rt, rd, sh):
 	return rs - rt
+
+def subu(rs, rt, rd, sh):
+	rs = convert_to_unsigned(rs)
+	rt = convert_to_unsigned(rt)
+	return rs + rt	
 
 def slt(rs, rt, rd, sh):
 	return 1 if rs < rt else 0
@@ -40,6 +55,11 @@ def mult(rs, rt, rd, sh):
 	lo = int(str_multiply[-16:], base=2)
 	return hi, lo
 
+def multu(rs, rt, rd, sh):
+	rs = convert_to_unsigned(rs)
+	rt = convert_to_unsigned(rt)
+	return mult(rs, rt, 0, 0)
+
 def div(rs, rt, rd, sh):
 	divide = rs // rt
 	remainder = rs % rt
@@ -49,8 +69,18 @@ def div(rs, rt, rd, sh):
 	lo = int(str_divide, base=2)
 	return hi, lo
 
+def divu(rs, rt, rd, sh):
+	rs = convert_to_unsigned(rs)
+	rt = convert_to_unsigned(rt)
+	return div(rs, rt, 0, 0)	
+
 def addi(rs, rt, imm, jump_enabled, pc):
 	return (0 if rs == None else rs) + imm
+
+def addiu(rs, rt, imm, jump_enabled, pc):
+	rs = convert_to_unsigned(rs)
+	imm = convert_to_unsigned(imm)
+	return addi(rs, 0, imm, False, 0)
 
 def slti(rs, rt, imm, jump_enabled, pc):
 	return 1 if rs < imm else 0

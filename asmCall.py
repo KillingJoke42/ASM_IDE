@@ -83,8 +83,9 @@ def write(code_file_name, outfile_name):
                 false_candidate = candidates.pop()
                 line[false_candidate[2]] = str(false_candidate[0] + ':')
             else:
+                print("in")
                 correct_candidate = candidates.pop()
-                line[correct_candidate[1]] = str(correct_candidate[0])
+                line[correct_candidate[2]] = str(correct_candidate[1])
             line = " ".join(line)
         print(line)
         output = compile(line, table)

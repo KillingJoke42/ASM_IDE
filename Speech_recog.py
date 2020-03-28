@@ -6,4 +6,7 @@ def Speech():
         audio_data = r.record(source, duration=10)
         # convert speech to text
         text = r.recognize_google(audio_data)
-        return(text)
+        text = text.split()
+        if "define" in text or "def" in text:
+        	text[text.index("define" if "define" in text else "def") + 1] = '?' + text[text.index("define" if "define" in text else "def") + 1]
+        return(" ".join(text))
