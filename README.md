@@ -17,14 +17,14 @@ The following files exist in the repository that comprises of the source code:
 
 ### Prerequisites
 
-python >= 3.6.9 <br />
-yaml >= 3.12 <br />
-json >= 2.0.9 <br />
-numpy >= 1.18.0 <br />
-sklearn >= 0.22.2.post1 <br />
-pyqt5 <br />
-pyaudio >= 0.2.11 <br />
-SpeechRecognition >= 3.8.1
+1) python >= 3.6.9 <br />
+2) yaml >= 3.12 <br />
+3) json >= 2.0.9 <br />
+4) numpy >= 1.18.0 <br />
+5) sklearn >= 0.22.2.post1 <br />
+6) pyqt5 <br />
+7) pyaudio >= 0.2.11 <br />
+8) SpeechRecognition >= 3.8.1
 
 <!-- ### Installing
 
