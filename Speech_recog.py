@@ -7,4 +7,8 @@ def Speech():
         print("Recognizing...")
         # convert speech to text
         text = r.recognize_google(audio_data)
+        cnt=text.find('define')
+        if 'define' in text:
+            text= text[0:cnt] +'define'+' ?'+text[cnt+7:]
+        return(text)
         return(text)
