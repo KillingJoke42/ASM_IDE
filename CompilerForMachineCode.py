@@ -1,5 +1,4 @@
-def compile(instruction, symbol_table):
-    commands = dict({
+commands = dict({
                     'mfhi':['r',0,16],
                     'mflo':['r',0,18],
                     'lui':['i',15],
@@ -42,7 +41,7 @@ def compile(instruction, symbol_table):
                     'syscall':['r',0,12]
                     })
 
-    registers = list([
+registers = list([
                         '$zero',
                         '$at',
                         '$v0',
@@ -74,10 +73,11 @@ def compile(instruction, symbol_table):
                         '$gp',
                         '$sp',
                         '$fp',
+
                         '$ra',
                         ''
                     ])
-
+def compile(instruction, symbol_table):
     chars_in_reg = ['$', 'a', 't', 'v', 's', 'k', 'g', 'p', 'r']
     nums_in_reg = list(range(10))
     
@@ -156,6 +156,8 @@ def compile(instruction, symbol_table):
         instruction = instruction[register_index:]
     else:
         instruction = '$zero,$zero,$zero'
+
+    #rs = rt = rd = sh = fn = imm = jumpaddr = 0
     if inst_type == 'r' and fn not in range(4):
         reg1 = list()
         flag1 = 0
@@ -241,9 +243,9 @@ def compile(instruction, symbol_table):
                 rt = 0 if registers.index(reg2) == 32 else registers.index(reg2)
                 rs = 0 if registers.index(reg3) == 32 else registers.index(reg3)
             else: 
-                rs = registers.index(reg1)
-                rt = registers.index(reg2)
-                rd = registers.index(reg3)
+                rs = registers.index(reg2)
+                rt = registers.index(reg3)
+                rd = registers.index(reg1)
 
     elif inst_type == 'i' or (inst_type == 'r' and fn in range(4)):
         itype_class1 = ['lui','bltz']
@@ -356,10 +358,11 @@ def compile(instruction, symbol_table):
     machine = list()
     if inst_type == 'r' and fn in range(4):
         opcode = "{0:06b}".format(opcode)
+        temp = rt
         fn = "{0:06b}".format(fn)
         rs = "{0:05b}".format(0)
-        rt = "{0:05b}".format(rt)
-        rd = "{0:05b}".format(rd)
+        rt = "{0:05b}".format(rd)
+        rd = "{0:05b}".format(temp)
         sh = "{0:05b}".format(int(sh) if int(sh) < 32 and int(sh) > 0 else 0)
         machine = [opcode, rs, rt, rd, sh, fn]
     elif inst_type == 'r':
@@ -372,8 +375,13 @@ def compile(instruction, symbol_table):
         machine = [opcode, rs, rt, rd, sh, fn]
     elif inst_type == 'i':
         opcode = "{0:06b}".format(opcode)
-        rs = "{0:05b}".format(rs)
-        rt = "{0:05b}".format(rt)
+        if inst_ext_op in ["beq", "bne", "lui", "lw", "lb", "lbu", "sw", "sb", "bltz"]:
+        	rs = str("{0:05b}".format(rs if inst_ext_op != "lui" else 0))
+        	rt = str("{0:05b}".format(rt if inst_ext_op != "bltz" else 0))
+        else:
+        	temp = rs
+        	rs = str("{0:05b}".format(rt))
+        	rt = str("{0:05b}".format(temp))
         imm = "{0:016b}".format(int(imm))
         machine = [opcode, rs, rt, imm]
     elif inst_type == 'j':

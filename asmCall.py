@@ -66,12 +66,28 @@ def write(code_file_name, outfile_name):
                 buffer.append(i)
         line = "".join(buffer)
         buffer = list()
+        candidates = list()
         if "beq" in line or "bne" in line or "bltz" in line:
+            line = line.split()
             for key in table.keys():
+                for item in line:
+                        if ':' in item:
+                            line[line.index(item)] = item[:-1]
                 if key in line:
-                    line = line.split()
-                    line[line.index(key)] = str(table[key])
-                    line = " ".join(line)
+                    #line[line.index(key)] = str(table[key])
+                    candidates.append([key, str(table[key]), line.index(key)])
+            print(candidates)
+            if len(candidates) == 2:
+                correct_candidate = candidates.pop()
+                line[correct_candidate[2]] = str(correct_candidate[1])
+                false_candidate = candidates.pop()
+                line[false_candidate[2]] = str(false_candidate[0] + ':')
+            else:
+                print("in")
+                correct_candidate = candidates.pop()
+                line[correct_candidate[2]] = str(correct_candidate[1])
+            line = " ".join(line)
+        print(line)
         output = compile(line, table)
         outfile_str.write(output + '\n')
         outfile.write((int(output, base = 2).to_bytes(4, byteorder = 'big')))
