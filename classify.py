@@ -12,8 +12,8 @@ from sklearn import preprocessing
 
 my_path = os.path.abspath(os.path.dirname(__file__))
 
-TRAINDATA_PATH = os.path.join(my_path, "data/traindata.txt")
-LABEL_PATH = os.path.join(my_path, "data")
+TRAINDATA_PATH = os.path.join(my_path, "REIA_repo/data/traindata.txt")
+LABEL_PATH = os.path.join(my_path, "REIA_repo/data")
 
 sys.path.insert(0, LABEL_PATH)
 import trainlabel
